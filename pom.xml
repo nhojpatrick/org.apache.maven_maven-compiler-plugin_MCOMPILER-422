@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!--modelVersion / -->
+	<modelVersion>4.0.0</modelVersion>
+	<!--parent / -->
+	<!--groupId / -->
+	<groupId>com.github.nhojpatrick.issues</groupId>
+	<!--artifactId / -->
+	<artifactId>MCOMPILER-422_parent</artifactId>
+	<!--packaging / -->
+	<packaging>pom</packaging>
+	<!--name / -->
+	<!--version / -->
+	<version>1</version>
+	<!--description / -->
+	<!--url / -->
+	<!--prerequisites / -->
+	<!--issueManagement / -->
+	<!--ciManagement / -->
+	<!--inceptionYear / -->
+	<!--mailingLists / -->
+	<!--developers / -->
+	<!--contributors / -->
+	<!--licenses / -->
+	<!--scm / -->
+	<!--organization / -->
+	<!--build /-->
+	<!--profiles / -->
+	<!--modules / -->
+	<modules>
+		<module>workaround-no-provides</module>
+		<module>workaround-with-provides</module>
+		<module>expected</module>
+	</modules>
+	<!--repositories / -->
+	<!--pluginRepositories / -->
+	<!--dependencies / -->
+	<!--reports (Deprecated) / -->
+	<!--reporting / -->
+	<!--dependencyManagement / -->
+	<!--distributionManagement / -->
+	<!--properties / -->
+</project>
