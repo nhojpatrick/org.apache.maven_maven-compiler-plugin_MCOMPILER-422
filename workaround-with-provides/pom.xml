@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!--modelVersion / -->
+	<modelVersion>4.0.0</modelVersion>
+	<!--parent / -->
+	<!--groupId / -->
+	<groupId>com.github.nhojpatrick.issues</groupId>
+	<!--artifactId / -->
+	<artifactId>MCOMPILER-422_workaround-with-provides-parent</artifactId>
+	<!--packaging / -->
+	<packaging>pom</packaging>
+	<!--name / -->
+	<!--version / -->
+	<version>1</version>
+	<!--description / -->
+	<!--url / -->
+	<!--prerequisites / -->
+	<!--issueManagement / -->
+	<!--ciManagement / -->
+	<!--inceptionYear / -->
+	<!--mailingLists / -->
+	<!--developers / -->
+	<!--contributors / -->
+	<!--licenses / -->
+	<!--scm / -->
+	<!--organization / -->
+	<!--build /-->
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.8.1</version>
+					<executions>
+						<execution>
+							<id>java11-main</id>
+							<phase>compile</phase>
+							<goals>
+								<goal>compile</goal>
+							</goals>
+							<configuration>
+								<release>11</release>
+								<jdkToolchain>
+									<version>11</version>
+								</jdkToolchain>
+								<compileSourceRoots>
+									<compileSourceRoot>${project.basedir}/src/main/java11</compileSourceRoot>
+								</compileSourceRoots>
+								<multiReleaseOutput>true</multiReleaseOutput>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>3.0.0-M3</version>
+					<configuration>
+						<rules>
+							<requireJavaVersion>
+								<version>[1.8,9),[11,)</version>
+							</requireJavaVersion>
+							<requireMavenVersion>
+								<version>3.6.3</version>
+							</requireMavenVersion>
+						</rules>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>3.0.0-M4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>3.0.0-M1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Automatic-Module-Name>${project.Automatic-Module-Name}</Automatic-Module-Name>
+								<Multi-Release>true</Multi-Release>
+							</manifestEntries>
+						</archive>
+						<excludes>
+							<exclude>**/ModuleInfoHack.class</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.9.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-toolchains-plugin</artifactId>
+					<version>3.0.0</version>
+					<configuration>
+						<toolchains>
+							<jdk>
+								<version>${base.java.version}</version>
+								<vendor>${toolchain.vendor}</vendor>
+							</jdk>
+						</toolchains>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>toolchain</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>3.1.0</version>
+					<executions>
+						<execution>
+							<id>remove-project-artifact-default</id>
+							<goals>
+								<goal>remove-project-artifact</goal>
+							</goals>
+							<configuration>
+								<removeAll>true</removeAll>
+							</configuration>
+						</execution>
+						<execution>
+							<id>remove-project-artifact-clean</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>remove-project-artifact</goal>
+							</goals>
+							<configuration>
+								<removeAll>true</removeAll>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-toolchains-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<!--profiles / -->
+	<profiles>
+		<profile>
+			<id>java11</id>
+			<activation>
+				<jdk>[11,)</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>add-source-java11</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>${project.basedir}/src/main/java11</source>
+									</sources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<base.java.version>11</base.java.version>
+				<maven.compiler.release>11</maven.compiler.release>
+				<project.custom.java.version>11</project.custom.java.version>
+			</properties>
+		</profile>
+	</profiles>
+	<!--modules / -->
+	<modules>
+		<module>service-interfaces</module>
+		<module>service-implementation</module>
+	</modules>
+	<!--repositories / -->
+	<!--pluginRepositories / -->
+	<!--dependencies / -->
+	<!--reports (Deprecated) / -->
+	<!--reporting / -->
+	<!--dependencyManagement / -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${version.org.apache.commons.lang3}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${version.org.slf4j}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<!--distributionManagement / -->
+	<!--properties / -->
+	<properties>
+		<!-- custom properties -->
+		<project.custom.encoding>UTF-8</project.custom.encoding>
+		<project.custom.java.version>1.8</project.custom.java.version>
+		<!-- maven user properties -->
+		<generateBackupPoms>false</generateBackupPoms>
+		<joda.beans.skip>false</joda.beans.skip>
+		<maven.compiler.source>${project.custom.java.version}</maven.compiler.source>
+		<maven.compiler.target>${project.custom.java.version}</maven.compiler.target>
+		<maven.test.failure.ignore>false</maven.test.failure.ignore>
+		<project.build.outputEncoding>${project.custom.encoding}</project.build.outputEncoding>
+		<project.build.sourceEncoding>${project.custom.encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${project.custom.encoding}</project.reporting.outputEncoding>
+		<!-- plugin versions -->
+		<!-- dependency versions -->
+		<version.org.apache.commons.lang3>[3.10,3.99)</version.org.apache.commons.lang3>
+		<version.org.slf4j>[1.7.30,1.7.99)</version.org.slf4j>
+		<!-- JPMS -->
+		<project.Automatic-Module-Name>workaround</project.Automatic-Module-Name>
+		<toolchain.vendor>openjdk</toolchain.vendor>
+		<base.java.version>1.8</base.java.version>
+	</properties>
+</project>
