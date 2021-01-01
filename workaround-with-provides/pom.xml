@@ -53,6 +53,9 @@
 									<compileSourceRoot>${project.basedir}/src/main/java11</compileSourceRoot>
 								</compileSourceRoots>
 								<multiReleaseOutput>true</multiReleaseOutput>
+								<compilerArgs>
+									<arg>--patch-module ${project.Automatic-Module-Name}=./target/classes</arg>
+								</compilerArgs>
 							</configuration>
 						</execution>
 					</executions>

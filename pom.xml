@@ -28,8 +28,8 @@
 	<!--profiles / -->
 	<!--modules / -->
 	<modules>
-		<module>workaround-no-provides</module>
-		<module>workaround-with-provides</module>
+<!--		<module>workaround-no-provides</module>-->
+<!--		<module>workaround-with-provides</module>-->
 		<module>expected</module>
 	</modules>
 	<!--repositories / -->
